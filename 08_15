@@ -1,0 +1,63 @@
+//Перепись населения
+//Создать словарь (Map<String, String>) занести в него десять записей по принципу "Фамилия" - "Имя".
+//Проверить сколько людей имеют совпадающие с заданным именем или фамилией.
+
+package com.javarush.task.task08.task0815;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Iterator;
+
+/* 
+Перепись населения
+*/
+
+public class Solution {
+    public static Map<String, String> createMap() {
+        //напишите тут ваш код
+        HashMap<String, String> myMap = new HashMap<>();
+        myMap.put("Иванов", "Вася");
+        myMap.put("Иванов2", "Вася2");
+        myMap.put("Иванов3", "Вася3");
+        myMap.put("Иванов4", "Вася4");
+        myMap.put("Иванов5", "Вася5");
+        myMap.put("Иванов6", "Вася6");
+        myMap.put("Иванов7", "Вася5");
+        myMap.put("Иванов8", "Вася5");
+        myMap.put("Иванов9", "Вася5");
+        myMap.put("Иванов10", "Вася10");
+
+        return myMap;
+    }
+
+    public static int getCountTheSameFirstName(Map<String, String> map, String name) {
+        //напишите тут ваш код
+        Iterator<Map.Entry<String, String>> i = map.entrySet().iterator();
+        int nameCounter = 0;
+        while(i.hasNext()){
+            Map.Entry<String, String> pair = i.next(); //получение «пары» элементов
+            if(pair.getValue().equals(name)){
+                nameCounter++;
+            }
+        }
+        return nameCounter;
+    }
+
+    public static int getCountTheSameLastName(Map<String, String> map, String lastName) {
+        //напишите тут ваш код
+        Iterator<Map.Entry<String, String>> i = map.entrySet().iterator();
+        int lastCounter = 0;
+        while(i.hasNext()){
+            Map.Entry<String, String> pair = i.next(); //получение «пары» элементов
+            if(pair.getKey().equals(lastName))
+                lastCounter++;
+        }
+        return lastCounter;
+    }
+
+    public static void main(String[] args) {
+        getCountTheSameFirstName(createMap(), "Иванов4");
+        getCountTheSameLastName(createMap(),"Вася5");
+
+    }
+}
