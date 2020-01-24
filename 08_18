@@ -1,0 +1,50 @@
+package com.javarush.task.task08.task0818;
+
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+
+/* 
+Создать словарь (Map<String, Integer>) и занести в него десять записей по принципу: "фамилия" - "зарплата".
+Удалить из словаря всех людей, у которых зарплата ниже 500.
+
+*/
+
+public class Solution {
+    public static Map<String, Integer> createMap() {
+        //напишите тут ваш код
+        HashMap<String, Integer> myMap = new HashMap<>();
+        myMap.put("Иванов", 1000);
+        myMap.put("Иванов2", 400);
+        myMap.put("Иванов3", 499);
+        myMap.put("Иванов4", 500);
+        myMap.put("Иванов5", 300);
+        myMap.put("Иванов6", 2000);
+        myMap.put("Иванов7", 200);
+        myMap.put("Иванов8", 300);
+        myMap.put("Иванов9", 500);
+        myMap.put("Иванов10", 100);
+
+        return myMap;
+    }
+
+    public static void removeItemFromMap(Map<String, Integer> map) {
+        //напишите тут ваш код
+        Iterator<Map.Entry<String, Integer>> i = map.entrySet().iterator();
+        while (i.hasNext())
+        {
+            Map.Entry<String, Integer> pair = i.next(); //получение «пары» элементов
+            if (pair.getValue() < 500){
+                //String key = pair.getKey(); //ключ
+                //System.out.println(key); //значение
+                i.remove();
+            }
+            //System.out.println(map);
+    }
+    }
+
+    public static void main(String[] args) {
+       removeItemFromMap( createMap());
+
+    }
+}
