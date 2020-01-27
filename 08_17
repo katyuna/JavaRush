@@ -1,0 +1,69 @@
+package com.javarush.task.task08.task0817;
+
+import java.util.*;
+
+/* 
+Создать словарь (Map<String, String>) занести в него десять записей по принципу "фамилия" - "имя".
+Удалить людей, имеющих одинаковые имена.
+*/
+
+public class Solution {
+    public static Map<String, String> createMap() {
+        //напишите тут ваш код
+        HashMap<String, String> myMap = new HashMap<>();
+        myMap.put("Иванов", "Вася");
+        myMap.put("Иванов2", "Вася2");
+        myMap.put("Иванов3", "Вася3");
+        myMap.put("Иванов4", "Вася4");
+        myMap.put("Иванов5", "Вася5");
+        myMap.put("Иванов6", "Вася6");
+        myMap.put("Иванов7", "Вася5");
+        myMap.put("Иванов8", "Вася5");
+        myMap.put("Иванов9", "Вася5");
+        myMap.put("Иванов10", "Вася10");
+
+        return myMap;
+
+    }
+
+    public static void removeTheFirstNameDuplicates(Map<String, String> map) {
+        //create array lists for all names and for repeating names
+        ArrayList<String> nameList = new ArrayList<>();
+        ArrayList<String> repNameList = new ArrayList<>();
+        //add names in nameList
+        Iterator<Map.Entry<String, String>> i = map.entrySet().iterator();
+        while (i.hasNext()){
+            Map.Entry<String, String> pair = i.next(); //получение «пары» элементов
+            //get value
+            String curVal = pair.getValue();
+            //add all values in array list
+            nameList.add(curVal);
+        }
+        // get repeating names from nameList and add them in reoNameList
+        for(int j = 0; j < nameList.size(); j++){
+            for (int l = j + 1; l < nameList.size(); l++){
+                if(nameList.get(j).equals(nameList.get(l))){
+                    repNameList.add(nameList.get(j));
+                }
+            }
+        }
+        //get name from repNameList and
+        for (int k=0; k<repNameList.size(); k++){
+            String name = repNameList.get(k);
+            removeItemFromMapByValue(map, name);
+        }
+    }
+
+    public static void removeItemFromMapByValue(Map<String, String> map, String value) {
+        Map<String, String> copy = new HashMap<>(map);
+        for (Map.Entry<String, String> pair : copy.entrySet()) {
+            if (pair.getValue().equals(value)) {
+                map.remove(pair.getKey());
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+         removeTheFirstNameDuplicates(createMap());
+    }
+}
