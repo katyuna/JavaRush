@@ -1,0 +1,69 @@
+package com.javarush.task.task08.task0824;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.*;
+
+
+
+/* 
+Собираем семейство
+*/
+
+public class Solution {
+    public static void main(String[] args) {
+        //Создай объекты и заполни их так, чтобы получилось: два дедушки, две бабушки, отец, мать, трое детей.
+
+        ArrayList<Human> arrayList = null;
+        Human ch1 = new Human("ch1", true, 5, null);
+        Human ch2 = new Human("ch2", true, 5, null);
+        Human ch3 = new Human("ch3", true, 5, null);
+
+        //Human father = new Human("Николай", true, 57, new ArrayList<>(Arrays.asList(ch1, ch2, ch3)));
+
+        Human mom = new Human("ch3", true, 25, new ArrayList<>(Arrays.asList(ch1, ch2, ch3)));
+        Human dad = new Human("dad", true, 25, new ArrayList<>(Arrays.asList(ch1, ch2, ch3)));
+
+        Human gradpa1 = new Human("gradpa1", true, 70, new ArrayList<>(Arrays.asList(mom)));
+        Human gradpa2 = new Human("gradpa2", true, 74, new ArrayList<>(Arrays.asList(dad)));
+
+        Human gradma1 = new Human("gradma1", false, 73, new ArrayList<>(Arrays.asList(mom)));
+        Human gradma2 = new Human("gradma2", false, 70, new ArrayList<>(Arrays.asList(dad)));
+
+        //Выведи все объекты Human на экран (Подсказка: используй метод toString() класса Human).
+        System.out.println(ch1.toString());
+        System.out.println(ch2.toString());
+        System.out.println(ch3.toString());
+    }
+}
+
+    //Создай класс Human с полями имя (String), пол (boolean), возраст (int), дети (ArrayList<Human>).
+    public static class Human {
+        String name;
+        Boolean sex;
+        int age;
+        ArrayList<Human> children;
+
+        //конструктор класса
+        public Human(String name, boolean sex, int age, ArrayList<Human> children) {
+        }
+
+        public String toString() {
+            String text = "";
+            text += "Имя: " + this.name;
+            text += ", пол: " + (this.sex ? "мужской" : "женский");
+            text += ", возраст: " + this.age;
+
+            int childCount = this.children.size();
+            if (childCount > 0) {
+                text += ", дети: " + this.children.get(0).name;
+
+                for (int i = 1; i < childCount; i++) {
+                    Human child = this.children.get(i);
+                    text += ", " + child.name;
+                }
+            }
+            return text;
+        }
+}
