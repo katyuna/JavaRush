@@ -34,7 +34,6 @@ public class Solution {
         for (Human person : all){
             System.out.println(person);
         }
-
      }
 
     //create class Human
