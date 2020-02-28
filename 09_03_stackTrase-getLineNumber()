@@ -1,0 +1,46 @@
+package com.javarush.task.task09.task0903;
+
+/* 
+Кто меня вызывал?
+  /*
+0 - getStackTrace
+
+1 - текущий метод
+
+2 - метод кто вызвал 1
+
+3 - метод кто вызвал 2
+и тд
+ */
+
+public class Solution {
+    public static void main(String[] args) {
+        method1();
+    }
+
+    public static int method1() {
+        //Stack trace: [getStackTrace, method2, method1, main]
+        //                 0             1        2       3
+        method2();
+        return  Thread.currentThread().getStackTrace()[2].getLineNumber();
+    }
+
+    public static int method2() {
+        method3();
+        return  Thread.currentThread().getStackTrace()[2].getLineNumber();
+    }
+
+    public static int method3() {
+        method4();
+        return  Thread.currentThread().getStackTrace()[2].getLineNumber();
+    }
+
+    public static int method4() {
+        method5();
+        return  Thread.currentThread().getStackTrace()[2].getLineNumber();
+    }
+
+    public static int method5() {
+        return  Thread.currentThread().getStackTrace()[2].getLineNumber();
+    }
+}
