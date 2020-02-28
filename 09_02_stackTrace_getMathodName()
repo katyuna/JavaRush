@@ -1,0 +1,58 @@
+package com.javarush.task.task09.task0902;
+
+/* 
+И снова StackTrace
+*/
+
+public class Solution {
+    public static void main(String[] args) {
+        method1();
+    }
+
+    /*
+0 - getStackTrace
+
+1 - имя метода (свое имя)
+
+2 - имя метода кто вызвал [1]
+
+3 - имя метода кто вызвал [2]
+
+
+     */
+
+    public static String method1() {
+        //Stack trace: [getStackTrace, method2, method1, main]
+        //                 0             1        2       3
+        method2();
+        StackTraceElement[] method1 = Thread.currentThread().getStackTrace();
+        return method1[2].getMethodName();
+
+    }
+
+    public static String method2() {
+        //Stack trace: [getStackTrace, method3, method2, method1, main]
+        //                 0             1        2       3         4
+        method3();
+        //Stack trace: [main, method1, method2, mathod3]
+        StackTraceElement[] method2 = Thread.currentThread().getStackTrace();
+        return method2[2].getMethodName();
+    }
+
+    public static String method3() {
+        method4();
+        StackTraceElement[] method3 = Thread.currentThread().getStackTrace();
+        return method3[2].getMethodName();
+    }
+
+    public static String method4() {
+        method5();
+        StackTraceElement[] method4 = Thread.currentThread().getStackTrace();
+        return method4[2].getMethodName();
+    }
+
+    public static String method5() {
+        StackTraceElement[] method5 = Thread.currentThread().getStackTrace();
+        return method5[2].getMethodName();
+    }
+}
